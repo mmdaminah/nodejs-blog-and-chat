@@ -12,9 +12,10 @@
     <%- include('./partials/navbar') %>
     <div class="container d-flex flex-column">
         <h1>Latest Blogs</h1>
-        <div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center">
             <% blogs.map((item)=>{%>
-            <%-include('./partials/card',{name:item.name,title:item.title,description:item.description})%>
+            <%-include('./partials/card',
+            {id:item._id,name:item.name,title:item.title,description:item.description})%>
             <% })%>
         </div>
     </div>

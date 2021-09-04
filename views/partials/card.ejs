@@ -1,9 +1,33 @@
-<div class="card" style="width: 18rem">
+<div class="card m-3" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title"><%= title %></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%= name%></h6>
         <p class="card-text"><%= description %></p>
-        <!-- <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a> -->
+        <button 
+        onclick="editBlog(this)"
+        data-id="<%= id %>"
+        class="btn btn-outline-warning">Edit</button>
+        <button
+            id="delete-btn-<%= id %>"
+            data-id="<%= id %>"
+            onclick="deleteBlog(this)"
+            class="btn btn-outline-danger"
+        >
+            Delete
+        </button>
     </div>
+    <script>
+        function deleteBlog(btn) {
+            fetch(`/deleteblog/${btn.dataset.id}`, () => {
+                method: "get";
+            })
+                .then(() => {
+                    window.location.href = "/";
+                })
+                .catch((err) => console.log(err));
+        }
+        function editBlog(btn){
+            window.location.href = `/editblog/${btn.dataset.id}`
+        }
+    </script>
 </div>

@@ -17,9 +17,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 
 app.get('/',(req,res)=>{
-    Blog.find()
+    Blog.find().sort({createdAt:-1})
     .then(result=>{
-        console.log(result)
         res.render('blogs',{title:"Blogs",blogs:result})
     })
     .catch(err=>console.log(err))
@@ -28,9 +27,32 @@ app.get('/addblog',(req,res)=>{
     res.render('addBlog',{title:"Add Blog"})
 })
 app.post('/addblog',(req,res)=>{
-    console.log(req.body)
     const blog = new Blog(req.body)
     blog.save()
     .then(()=>res.redirect("/"))
     .catch((err)=>console.log(err))
+})
+app.get('/deleteblog/:id',(req,res)=>{
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+    .then(result =>{
+        res.redirect("/")
+    })
+    .catch(err=>console.log(err))
+})
+app.get('/editblog/:id',(req,res)=>{
+    const id = req.params.id;
+    console.log(id)
+    Blog.findById(id)
+    .then(result=>{
+        console.log(result)
+        res.render('editBlog',{id:result._id,name:result.name,cardTitle:result.title,description:result.description,title:"Edit Blog",})
+    })
+})
+app.post('/editblog/:id',(req,res)=>{
+    console.log(req.body)
+    console.log(req.params.id)
+    Blog.findByIdAndUpdate(req.params.id,req.body)
+    .then(()=>res.redirect('/'))
+    .catch(err=>console.log(err))
 })
