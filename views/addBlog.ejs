@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/bootstrapCss') %>
+    <link rel="stylesheet" href="/commonStyles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <div class="container w-100 h-75 d-flex align-items-center">
+        <form method="POST" action="/addblog" class="bg-light p-3 w-50 mx-auto">
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="enter your name">
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="title" type="text" class="form-control" id="title" placeholder="enter your title">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" class="form-control" placeholder="Write your Description" id="description" rows="3"></textarea>
+              </div>
+              <button class="btn btn-success">Post</button>
+        </form>
+    </div>
+    <%- include('./partials/bootstrapJs') %>
+</body>
+</html>

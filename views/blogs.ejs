@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/bootstrapCss') %>
+    <link rel="stylesheet" href="/commonStyles.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <div class="container d-flex flex-column">
+        <h1>Latest Blogs</h1>
+        <div>
+            <%- include('./partials/card') %>
+        </div>
+    </div>
+    <%- include('./partials/bootstrapJs') %>
+</body>
+</html>
