@@ -13,7 +13,9 @@
     <div class="container d-flex flex-column">
         <h1>Latest Blogs</h1>
         <div>
-            <%- include('./partials/card') %>
+            <% blogs.map((item)=>{%>
+            <%-include('./partials/card',{name:item.name,title:item.title,description:item.description})%>
+            <% })%>
         </div>
     </div>
     <%- include('./partials/bootstrapJs') %>
