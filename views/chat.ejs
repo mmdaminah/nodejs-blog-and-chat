@@ -4,14 +4,19 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <%- include('./partials/bootstrapCss') %>
+        <link rel="stylesheet" href="/commonStyles.css">
+        <title>Chat</title>
     </head>
     <body>
-        <form id="form" action="">
-            <input id="input" type="text" />
-            <button>send</button>
-            <div id="messages"></div>
-        </form>
+        <%- include('./partials/navbar') %>
+        <div class="mt-2 w-100 container d-flex flex-column justify-content-center align-items-center">
+            <div id="messages" class="w-100 bg-light p-3"></div>
+            <form class="w-100 text-center d-flex justify-content-center mt-3" id="form" action="">
+                <input class="form-control w-75" id="input" type="text" name="message" placeholder="type your message..." />
+                <button class="btn btn-primary mx-2">send</button>
+            </form>
+        </div>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
@@ -26,8 +31,9 @@
                 }
             })
             socket.on('chat message',(msg)=>{
-                messages.innerHTML +=`<div>${msg}</div>`
+                messages.innerHTML +=`<div class="my-2 p-2 text-white message bg-primary">${msg}</div>`
             })
         </script>
+        <%- include('./partials/bootstrapJs') %>
     </body>
 </html>

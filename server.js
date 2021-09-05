@@ -36,6 +36,9 @@ app.use(blogRoutes)
 app.get('/chat',(req,res)=>{
     res.render('chat')
 })
+app.get('/chat/login', (req,res)=>{
+    res.render('chatLogin')
+})
 io.on('connection',(socket)=>{
     console.log("a user connected")
     socket.on('disconnect',()=>{
